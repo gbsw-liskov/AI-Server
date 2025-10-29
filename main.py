@@ -34,4 +34,4 @@ async def generate(request: Request, type: str = Query("default")):
 
     result = res.json()
     output = result["choices"][0]["message"]["content"]
-    return {"contents": output}
+    return {"contents": list(output.split(";"))}
