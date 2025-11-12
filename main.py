@@ -1,13 +1,24 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
+from pydantic import BaseModel
 import requests
-from typing import Dict, Any
 
 app = FastAPI()
 
 VLLM_URL = "http://localhost:8000/v1/chat/completions"
 
+# 요청 본문 스키마 정의
+class PropertyRequest(BaseModel):
+    propertyId: int
+    name: str
+    address: str
+    propertyType: str
+    floor: int
+    buildYear: int
+    area: str
+    availableDate: str
+
 @app.post("/checklist")
-async def generate(request: Request):
+async def generate(data: PropertyRequest):
     """
     Request 형식:
     {
@@ -26,22 +37,13 @@ async def generate(request: Request):
         "contents": [ ... ]
     }
     """
-    data: Dict[str, Any] = await request.json()
 
-    # 요청 필드 검증
-    required_fields = ["propertyId", "name", "address", "propertyType", "floor", "buildYear", "area", "availableDate"]
-    missing = [f for f in required_fields if f not in data]
-    if missing:
-        return {"contents": f"Error: Missing fields - {', '.join(missing)}"}
-
-    # 프롬프트 구성
     prompt = (
-        f"매물명: {data['name']}, 주소: {data['address']}, 유형: {data['propertyType']}, "
-        f"층수: {data['floor']}, 준공연도: {data['buildYear']}, 면적: {data['area']}, "
-        f"입주가능일: {data['availableDate']}"
+        f"매물명: {data.name}, 주소: {data.address}, 유형: {data.propertyType}, "
+        f"층수: {data.floor}, 준공연도: {data.buildYear}, 면적: {data.area}, "
+        f"입주가능일: {data.availableDate}"
     )
 
-    # 시스템 프롬프트
     system_prompt = (
         "당신은 부동산 위험 분석 전문가입니다. "
         "다음 매물 설명을 기반으로 위험 사항 체크리스트를 생성하세요. "
