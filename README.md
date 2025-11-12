@@ -1,7 +1,7 @@
 # 환경 (Runpod Pytorch 기준)
 ```
 pip install vllm
-pip install hf_transformer
+pip install hf_transfer
 pip install uvicorn
 # 모델은 알아서 허깅페이스에서 다운로드...
 ```
