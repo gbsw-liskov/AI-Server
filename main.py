@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request, Query
+from fastapi import FastAPI, Request
 import requests
 from typing import Dict, Any
 
@@ -7,7 +7,7 @@ app = FastAPI()
 VLLM_URL = "http://localhost:8000/v1/chat/completions"
 
 @app.post("/checklist")
-async def generate(request: Request, type: str = Query("default")):
+async def generate(request: Request):
     """
     Request 형식:
     {
@@ -41,15 +41,13 @@ async def generate(request: Request, type: str = Query("default")):
         f"입주가능일: {data['availableDate']}"
     )
 
-    if type == "checklist":
-        system_prompt = (
-            "당신은 부동산 위험 분석 전문가입니다. "
-            "다음 매물 설명을 기반으로 위험 사항 체크리스트를 생성하세요. "
-            "체크리스트 형식으로 여러 항목으로 답변하고, 각 항목은 ';'로 구분하세요. "
-            "줄바꿈이나 특수문자는 사용하지 마세요."
-        )
-    else:
-        return {"contents": "Error: Unsupported type"}
+    # 시스템 프롬프트
+    system_prompt = (
+        "당신은 부동산 위험 분석 전문가입니다. "
+        "다음 매물 설명을 기반으로 위험 사항 체크리스트를 생성하세요. "
+        "체크리스트 형식으로 여러 항목으로 답변하고, 각 항목은 ';'로 구분하세요. "
+        "줄바꿈이나 특수문자는 사용하지 마세요."
+    )
 
     payload = {
         "model": "openai/gpt-oss-20b",
