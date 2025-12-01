@@ -1,0 +1,94 @@
+구분 1,구분 2,기능명,설명,메서드,경로,요청 (JSON),응답,상태
+하자 점검,체크리스트,체크리스트 생성,"매물 분석 & 체크리스트
+초안 자동 생성
+",POST,/checklist,"{
+    propertyId,
+    name,
+    address,
+    propertyType,
+    floor,
+    buildYear,
+    area,
+    availableDate,
+}","{
+    [content]
+} ",TRUE
+위험 매물 알림,,위험 분석,"부동산 관련 문서와
+거래 정보를 분석",POST,/analyze,"{
+    propertyId,
+    name,
+    address,
+    propertyType,
+    floor,
+    buildYear,
+    area,
+    availableDate,
+    marketPrice: number,
+    deposit: number,
+    monthlyRent: number
+}
+
+[files]: multipart/form-data","{
+    totalRisk,
+    summary,
+    details [
+         { title, content, severity }
+     ]
+}",FALSE
+,,대처 방안 확인하기,"분석된 위험 요소를
+기반으로 AI가
+맞춤형 대처 방안을 생성",POST,/solution,"{
+    propertyId,
+    name,
+    address,
+    propertyType,
+    floor,
+    buildYear,
+    area,
+    availableDate,
+    marketPrice: number,
+    deposit: number,
+    monthlyRent: number
+    totalRisk,
+    summary,
+    details [
+         { title, content, severity }
+     ]
+}
+[files]: multipart/form-data""","{
+    coping"": [{
+        title.
+        [list]
+    }],
+    [checklist]
+}",FALSE
+,,,,,,,,FALSE
+,, ,,,,,,FALSE
+,,,,,,,,FALSE
+,,,,,,,,FALSE
+,,,,,,,,FALSE
+,,,,,,,,FALSE
+,,,,,,,,FALSE
+,,,,,,,,FALSE
+,,,,,,,,FALSE
+,,,,,,,,FALSE
+,,,,,,,,FALSE
+,,,,,,,,FALSE
+,,,,,,,,FALSE
+,,,,,,,,FALSE
+,,,,,,,,FALSE
+,,,,,,,,FALSE
+,,,,,,,,FALSE
+필드,타입,설명,,,,,,
+propertyId,,,,,,,,
+marketPrice,,,,,,,,
+deposit,,,,,,,,
+monthlyRent,,,,,,,,
+files,,,,,,,,
+totalRisk,,,,,,,,
+original,,,,,,,,
+analyze,,,,,,,,
+comment,,,,,,,,
+title,,,,,,,,
+list,,,,,,,,
+checklist,,,,,,,,
