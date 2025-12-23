@@ -84,9 +84,8 @@ def format_property_info(
     address: str,
     property_type: str,
     floor: int,
-    build_year: int,
-    area: str,
-    available_date: str,
+    built_year: int,
+    area: int,
     market_price: Optional[float] = None,
     deposit: Optional[float] = None,
     monthly_rent: Optional[float] = None,
@@ -98,9 +97,8 @@ def format_property_info(
         f"주소: {address}",
         f"유형: {property_type}",
         f"층수: {floor}",
-        f"준공연도: {build_year}",
+        f"준공연도: {built_year}",
         f"면적: {area}",
-        f"입주 가능일: {available_date}",
     ]
     if market_price is not None:
         lines.append(f"시세: {market_price}")

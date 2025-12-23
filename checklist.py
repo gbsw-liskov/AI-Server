@@ -12,9 +12,8 @@ class ChecklistRequest(BaseModel):
     address: str
     propertyType: str
     floor: int
-    buildYear: int
-    area: str
-    availableDate: str
+    builtyear: int
+    area: int
 
 
 @router.post("/checklist")
@@ -25,9 +24,8 @@ async def generate_checklist(data: ChecklistRequest):
         address=data.address,
         property_type=data.propertyType,
         floor=data.floor,
-        build_year=data.buildYear,
+        built_year=data.builtyear,
         area=data.area,
-        available_date=data.availableDate,
     )
 
     system_prompt = (
