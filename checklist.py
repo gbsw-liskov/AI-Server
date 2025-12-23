@@ -12,7 +12,7 @@ class ChecklistRequest(BaseModel):
     address: str
     propertyType: str
     floor: int
-    builtyear: int
+    builtYear: int
     area: int
 
 
@@ -24,7 +24,7 @@ async def generate_checklist(data: ChecklistRequest):
         address=data.address,
         property_type=data.propertyType,
         floor=data.floor,
-        built_year=data.builtyear,
+        built_year=data.builtYear,
         area=data.area,
     )
 
