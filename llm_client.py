@@ -7,7 +7,7 @@ from fastapi import UploadFile
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 # 환경변수 MODEL_NAME, MAX_NEW_TOKENS 등으로 조정 가능
-DEFAULT_MODEL_NAME = os.environ.get("MODEL_NAME", " QuantTrio/Qwen3-235B-A22B-Instruct-2507-AWQ")
+DEFAULT_MODEL_NAME = os.environ.get("MODEL_NAME", "QuantTrio/Qwen3-235B-A22B-Instruct-2507-AWQ")
 DEFAULT_MAX_NEW_TOKENS = int(os.environ.get("MAX_NEW_TOKENS", "512"))
 
 
