@@ -45,11 +45,12 @@ class LLMClient:
         with torch.no_grad():
             outputs = model.generate(
                 **inputs,
-                do_sample=True,
+                do_sample=False,
                 temperature=temperature,
                 top_p=top_p,
                 max_new_tokens=self.max_new_tokens,
                 eos_token_id=tokenizer.eos_token_id,
+                pad_token_id=tokenizer.eos_token_id,
             )
 
         generated_ids = outputs[0][inputs.input_ids.shape[-1] :]
