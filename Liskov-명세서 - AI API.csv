@@ -7,9 +7,8 @@
     address,
     propertyType,
     floor,
-    buildYear,
-    area,
-    availableDate,
+    builtYear,
+    area: number,
 }","{
     [content]
 } ",TRUE
@@ -20,9 +19,8 @@
     address,
     propertyType,
     floor,
-    buildYear,
-    area,
-    availableDate,
+    builtYear,
+    area: number,
     marketPrice: number,
     deposit: number,
     monthlyRent: number
@@ -43,9 +41,8 @@
     address,
     propertyType,
     floor,
-    buildYear,
-    area,
-    availableDate,
+    builtYear,
+    area: number,
     marketPrice: number,
     deposit: number,
     monthlyRent: number
